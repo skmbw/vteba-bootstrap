@@ -57,3 +57,18 @@ class AnalogClock implements ClockInterface {
 
 let digital = createClock(DigitalClock, 12, 17);
 let analog = createClock(AnalogClock, 7, 32);
+
+function identity<T>(arg: T): T {
+  return arg;
+}
+// 这个是函数类型 签名 <U>(arg: U) => U
+let myIdentity: <U>(arg: U) => U = identity;
+
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key];
+}
+
+let x = { a: 1, b: 2, c: 3, d: 4 };
+
+getProperty(x, 'a'); // okay
+// getProperty(x, 'm'); // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
